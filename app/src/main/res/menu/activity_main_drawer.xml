@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+                android:id="@+id/nav_home"
+                android:icon="@drawable/ic_home_black_24dp"
+                android:title="@string/menu_home"/>
+        <item
+                android:id="@+id/nav_unity"
+                android:icon="@drawable/ic_local_hospital_black_24dp"
+                android:title="@string/menu_unity"/>
+    </group>
+
+    <item android:title="Opções">
+        <menu>
+            <item
+                    android:id="@+id/nav_config"
+                    android:icon="@drawable/ic_menu_manage"
+                    android:title="@string/menu_config"/>
+            <item
+                    android:id="@+id/nav_info"
+                    android:icon="@drawable/ic_info_outline_black_24dp"
+                    android:title="@string/menu_about"/>
+            <item
+                    android:id="@+id/nav_exit"
+                    android:icon="@drawable/ic_exit_to_app_black_24dp"
+                    android:title="@string/menu_exit"/>
+        </menu>
+    </item>
+
+</menu>
