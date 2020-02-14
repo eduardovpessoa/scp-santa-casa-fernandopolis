@@ -14,7 +14,7 @@
                 android:title="@string/menu_unity"/>
     </group>
 
-    <item android:title="Opções">
+    <item android:title="@string/options">
         <menu>
             <item
                     android:id="@+id/nav_config"

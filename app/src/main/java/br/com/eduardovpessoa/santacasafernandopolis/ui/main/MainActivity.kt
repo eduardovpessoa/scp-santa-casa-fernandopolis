@@ -79,10 +79,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_home -> {
-                // Handle the camera action
+                title = "SCP - Início"
+                fragment = UnityFragment()
+                replaceFragment(fragment)
             }
             R.id.nav_unity -> {
-                title = "SCP - Classificação"
+                title = "SCP - Unidades"
                 fragment = UnityFragment()
                 replaceFragment(fragment)
             }
