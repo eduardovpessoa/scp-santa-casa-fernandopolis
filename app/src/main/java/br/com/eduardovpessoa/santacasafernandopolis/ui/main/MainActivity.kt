@@ -14,7 +14,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import br.com.eduardovpessoa.santacasafernandopolis.R
 import br.com.eduardovpessoa.santacasafernandopolis.ui.login.LoginActivity
-import br.com.eduardovpessoa.santacasafernandopolis.ui.main.classificacao.ClassificationFragment
+import br.com.eduardovpessoa.santacasafernandopolis.ui.main.unity.UnityFragment
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     MainContract.View {
@@ -83,8 +83,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             }
             R.id.nav_unity -> {
                 title = "SCP - Classificação"
-                fragment =
-                    ClassificationFragment()
+                fragment = UnityFragment()
                 replaceFragment(fragment)
             }
             R.id.nav_info -> {

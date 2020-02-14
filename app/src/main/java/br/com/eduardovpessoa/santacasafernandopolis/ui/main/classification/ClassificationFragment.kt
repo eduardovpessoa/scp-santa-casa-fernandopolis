@@ -1,4 +1,4 @@
-package br.com.eduardovpessoa.santacasafernandopolis.ui.main.classificacao
+package br.com.eduardovpessoa.santacasafernandopolis.ui.main.classification
 
 
 import android.os.Bundle
