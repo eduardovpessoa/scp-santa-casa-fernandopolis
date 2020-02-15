@@ -12,6 +12,7 @@ interface MainContract {
         fun verifyLoggedIn()
         fun logout()
         fun onDestroy()
+
     }
 
 }

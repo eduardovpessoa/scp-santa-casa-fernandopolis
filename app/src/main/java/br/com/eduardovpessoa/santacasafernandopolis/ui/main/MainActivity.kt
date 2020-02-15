@@ -2,6 +2,7 @@ package br.com.eduardovpessoa.santacasafernandopolis.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import androidx.core.view.GravityCompat
 import androidx.appcompat.app.ActionBarDrawerToggle
 import android.view.MenuItem
@@ -14,13 +15,16 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import br.com.eduardovpessoa.santacasafernandopolis.R
 import br.com.eduardovpessoa.santacasafernandopolis.ui.login.LoginActivity
+import br.com.eduardovpessoa.santacasafernandopolis.ui.main.classification.ClassificationFragment
+import br.com.eduardovpessoa.santacasafernandopolis.ui.main.home.HomeFragment
 import br.com.eduardovpessoa.santacasafernandopolis.ui.main.unity.UnityFragment
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
-    MainContract.View {
+    MainContract.View, MainAdapterContract.UnityAdapter {
 
     private var presenter: MainContract.Presenter? = null
     private lateinit var fragment: Fragment
+    private var doubleBackToExitPressedOnce: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,7 +59,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {
-            super.onBackPressed()
+            if (doubleBackToExitPressedOnce) {
+                super.onBackPressed()
+                return
+            } else {
+                doubleBackToExitPressedOnce = true
+                Toast.makeText(this, "Pressione novamente para sair...", Toast.LENGTH_SHORT).show()
+                Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+            }
         }
     }
 
@@ -80,7 +91,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.nav_home -> {
                 title = "SCP - Início"
-                fragment = UnityFragment()
+                fragment = HomeFragment()
                 replaceFragment(fragment)
             }
             R.id.nav_unity -> {
@@ -112,6 +123,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         presenter?.onDestroy()
         presenter = null
         super.onDestroy()
+    }
+
+    override fun onClickUnity(id: String?) {
+        title = "SCP - Classificação"
+        replaceFragment(ClassificationFragment.newInstance(id))
     }
 
 }

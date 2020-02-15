@@ -12,7 +12,4 @@ interface UnityContract {
         fun loadUnity()
         fun onDestroy()
     }
-    interface Adapter {
-
-    }
 }

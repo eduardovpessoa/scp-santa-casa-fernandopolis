@@ -1,4 +1,4 @@
-package br.com.eduardovpessoa.santacasafernandopolis.ui.main.unity
+package br.com.eduardovpessoa.santacasafernandopolis.ui.main.classification
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,14 +7,15 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import br.com.eduardovpessoa.santacasafernandopolis.R
+import br.com.eduardovpessoa.santacasafernandopolis.data.model.Bed
 import br.com.eduardovpessoa.santacasafernandopolis.data.model.Unity
 import br.com.eduardovpessoa.santacasafernandopolis.ui.main.MainAdapterContract
 
-class UnityAdapter(
-    private val unityList: MutableList<Unity>?,
-    private val unityListener: MainAdapterContract.UnityAdapter?
+class ClassificationAdapter(
+    private val bedList: MutableList<Bed>?,
+    private val classificationListener: MainAdapterContract.UnityAdapter?
 ) :
-    RecyclerView.Adapter<UnityAdapter.ViewHolder>() {
+    RecyclerView.Adapter<ClassificationAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bindView(unityList?.get(position), position % 2 != 0, unityListener)

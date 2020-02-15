@@ -1,7 +1,9 @@
 package br.com.eduardovpessoa.santacasafernandopolis.ui.main.unity
 
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,18 +13,29 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import br.com.eduardovpessoa.santacasafernandopolis.R
 import br.com.eduardovpessoa.santacasafernandopolis.data.model.Unity
+import br.com.eduardovpessoa.santacasafernandopolis.ui.main.MainAdapterContract
+import br.com.eduardovpessoa.santacasafernandopolis.ui.main.MainContract
 import kotlinx.android.synthetic.main.fragment_unity.*
 
 class UnityFragment : Fragment(), UnityContract.View {
 
     private var presenter: UnityContract.Presenter? = null
+    private var listener: MainAdapterContract.UnityAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_unity, container, false)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is MainAdapterContract.UnityAdapter) {
+            listener = context
+        } else {
+            Log.e("", "deu ruim")
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,7 +51,13 @@ class UnityFragment : Fragment(), UnityContract.View {
     }
 
     override fun setAdapter(unityList: MutableList<Unity>) {
-        val adapter = UnityAdapter(unityList)
+        val adapter = UnityAdapter(
+            unityList,
+            object : MainAdapterContract.UnityAdapter {
+                override fun onClickUnity(id: String?) {
+                    listener?.onClickUnity(id)
+                }
+            })
         adapter.notifyDataSetChanged()
         recyclerUnity.adapter = adapter
     }
