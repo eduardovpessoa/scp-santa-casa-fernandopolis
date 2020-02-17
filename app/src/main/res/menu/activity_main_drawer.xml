@@ -9,9 +9,9 @@
                 android:icon="@drawable/ic_home_black_24dp"
                 android:title="@string/menu_home"/>
         <item
-                android:id="@+id/nav_unity"
+                android:id="@+id/nav_classification"
                 android:icon="@drawable/ic_local_hospital_black_24dp"
-                android:title="@string/menu_unity"/>
+                android:title="@string/menu_classification"/>
     </group>
 
     <item android:title="@string/options">

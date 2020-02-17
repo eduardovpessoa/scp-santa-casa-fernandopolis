@@ -13,14 +13,18 @@ import androidx.appcompat.widget.Toolbar
 import android.view.Menu
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import br.com.eduardovpessoa.santacasafernandopolis.R
 import br.com.eduardovpessoa.santacasafernandopolis.ui.login.LoginActivity
+import br.com.eduardovpessoa.santacasafernandopolis.ui.main.bed.BedFragment
 import br.com.eduardovpessoa.santacasafernandopolis.ui.main.classification.ClassificationFragment
 import br.com.eduardovpessoa.santacasafernandopolis.ui.main.home.HomeFragment
+import br.com.eduardovpessoa.santacasafernandopolis.ui.main.new_classification.NewClassificationFragment
 import br.com.eduardovpessoa.santacasafernandopolis.ui.main.unity.UnityFragment
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
-    MainContract.View, MainAdapterContract.UnityAdapter {
+    MainContract.View, MainAdapterContract.BedAdapter, MainAdapterContract.ClassificationAdapter,
+    MainAdapterContract.UnityAdapter {
 
     private var presenter: MainContract.Presenter? = null
     private lateinit var fragment: Fragment
@@ -47,6 +51,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         navView.setNavigationItemSelectedListener(this)
+        title = "SCP - Início"
+        replaceFragment(HomeFragment())
     }
 
     override fun returnToLogin() {
@@ -55,17 +61,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     override fun onBackPressed() {
+        val fm: FragmentManager = supportFragmentManager
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START)
         } else {
-            if (doubleBackToExitPressedOnce) {
-                super.onBackPressed()
-                return
+            if (fm.backStackEntryCount > 0) {
+                fm.popBackStack()
             } else {
-                doubleBackToExitPressedOnce = true
-                Toast.makeText(this, "Pressione novamente para sair...", Toast.LENGTH_SHORT).show()
-                Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+                if (doubleBackToExitPressedOnce) {
+                    super.onBackPressed()
+                    return
+                } else {
+                    doubleBackToExitPressedOnce = true
+                    Toast.makeText(this, "Pressione novamente para sair...", Toast.LENGTH_SHORT)
+                        .show()
+                    Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+                }
             }
         }
     }
@@ -94,7 +106,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 fragment = HomeFragment()
                 replaceFragment(fragment)
             }
-            R.id.nav_unity -> {
+            R.id.nav_classification -> {
                 title = "SCP - Unidades"
                 fragment = UnityFragment()
                 replaceFragment(fragment)
@@ -116,6 +128,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun replaceFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.frame_main, fragment)
+        transaction.addToBackStack(fragment::class.java.name)
         transaction.commit()
     }
 
@@ -125,9 +138,33 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onDestroy()
     }
 
-    override fun onClickUnity(id: String?) {
-        title = "SCP - Classificação"
-        replaceFragment(ClassificationFragment.newInstance(id))
+    override fun onClickBed(idUnity: String?, idBed: String?, nameBed: String?) {
+        title = "SCP - Histórico $nameBed"
+        replaceFragment(ClassificationFragment.newInstance(idUnity, idBed))
     }
 
+    override fun onClickClassification(
+        idUnity: String?,
+        idBed: String?,
+        idClassification: String?,
+        dateClassification: Long?
+    ) {
+        /*val sdf: String = SimpleDateFormat(
+            "dd/MM/yyyy",
+            Locale("pt", "BR")
+        ).format(dateClassification?.let { Date(it).toString() })*/
+        title = "SCP - Class. 17/02/2020"
+        replaceFragment(
+            NewClassificationFragment.newInstance(
+                idUnity,
+                idBed,
+                idClassification.toString()
+            )
+        )
+    }
+
+    override fun onClickUnity(idUnity: String?, nameUnity: String?) {
+        title = "SCP - $nameUnity"
+        replaceFragment(BedFragment.newInstance(idUnity, nameUnity))
+    }
 }

@@ -1,4 +1,4 @@
-package br.com.eduardovpessoa.santacasafernandopolis.ui.main.unity
+package br.com.eduardovpessoa.santacasafernandopolis.ui.main.bed
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,23 +7,24 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import br.com.eduardovpessoa.santacasafernandopolis.R
-import br.com.eduardovpessoa.santacasafernandopolis.data.model.Unity
+import br.com.eduardovpessoa.santacasafernandopolis.data.model.Bed
 import br.com.eduardovpessoa.santacasafernandopolis.ui.main.MainAdapterContract
 
-class UnityAdapter(
-    private val unityList: MutableList<Unity>?,
-    private val unityListener: MainAdapterContract.UnityAdapter?
+class BedAdapter(
+    private val idUnity: String?,
+    private val bedList: MutableList<Bed>?,
+    private val bedListener: MainAdapterContract.BedAdapter?
 ) :
-    RecyclerView.Adapter<UnityAdapter.ViewHolder>() {
+    RecyclerView.Adapter<BedAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindView(unityList?.get(position), position % 2 != 0, unityListener)
+        holder.bindView(idUnity, bedList?.get(position), position % 2 != 0, bedListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.unity_adapter_row,
+                R.layout.bed_adapter_row,
                 parent,
                 false
             )
@@ -31,17 +32,18 @@ class UnityAdapter(
     }
 
     override fun getItemCount(): Int {
-        return unityList?.size ?: 0
+        return bedList?.size ?: 0
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var name: TextView = itemView.findViewById(R.id.txtUnityName)
+        var name: TextView = itemView.findViewById(R.id.txtBedName)
         fun bindView(
-            unity: Unity?,
+            idUnity: String?,
+            bed: Bed?,
             colored: Boolean,
-            unityListener: MainAdapterContract.UnityAdapter?
+            bedListener: MainAdapterContract.BedAdapter?
         ) {
-            name.text = unity?.name
+            name.text = bed?.name
             if (colored) itemView.setBackgroundColor(
                 ContextCompat.getColor(
                     itemView.context,
@@ -49,9 +51,8 @@ class UnityAdapter(
                 )
             )
             itemView.setOnClickListener {
-                unityListener?.onClickUnity(unity?.id, unity?.name)
+                bedListener?.onClickBed(idUnity, bed?.id, bed?.name)
             }
         }
     }
-
 }

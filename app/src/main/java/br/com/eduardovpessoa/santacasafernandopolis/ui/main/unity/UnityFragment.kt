@@ -54,8 +54,8 @@ class UnityFragment : Fragment(), UnityContract.View {
         val adapter = UnityAdapter(
             unityList,
             object : MainAdapterContract.UnityAdapter {
-                override fun onClickUnity(id: String?) {
-                    listener?.onClickUnity(id)
+                override fun onClickUnity(idUnity: String?, nameUnity: String?) {
+                    listener?.onClickUnity(idUnity, nameUnity)
                 }
             })
         adapter.notifyDataSetChanged()
@@ -63,7 +63,7 @@ class UnityFragment : Fragment(), UnityContract.View {
     }
 
     override fun showMessage(msg: String, infinite: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun onDestroy() {

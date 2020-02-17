@@ -1,25 +1,43 @@
 package br.com.eduardovpessoa.santacasafernandopolis.ui.main.classification
 
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 
 import br.com.eduardovpessoa.santacasafernandopolis.R
-import br.com.eduardovpessoa.santacasafernandopolis.data.model.Bed
+import br.com.eduardovpessoa.santacasafernandopolis.data.model.Classification
+import br.com.eduardovpessoa.santacasafernandopolis.ui.main.MainAdapterContract
+import br.com.eduardovpessoa.santacasafernandopolis.ui.main.bed.BedFragment
+import kotlinx.android.synthetic.main.fragment_classification.*
 
 class ClassificationFragment : Fragment(), ClassificationContract.View {
 
-    private var presenter = ClassificationContract.Presenter? = null
+    private var presenter: ClassificationContract.Presenter? = null
+    private var listener: MainAdapterContract.ClassificationAdapter? = null
 
     companion object {
         @JvmStatic
-        fun newInstance(id: String?) = ClassificationFragment().apply {
+        fun newInstance(idUnity: String?, idBed: String?) = ClassificationFragment().apply {
             arguments = Bundle().apply {
-                putString("id", id)
+                putString("idUnity", idUnity)
+                putString("idBed", idBed)
             }
+        }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is MainAdapterContract.ClassificationAdapter) {
+            listener = context
+        } else {
+            Log.e("", "deu ruim")
         }
     }
 
@@ -27,20 +45,55 @@ class ClassificationFragment : Fragment(), ClassificationContract.View {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_classificacao, container, false)
+        return inflater.inflate(R.layout.fragment_classification, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter = ClassificationPresenter()
+        presenter = ClassificationPresenter(this)
+        recyclerClassification.layoutManager = LinearLayoutManager(view.context)
+        recyclerClassification.addItemDecoration(
+            DividerItemDecoration(
+                view.context,
+                DividerItemDecoration.VERTICAL
+            )
+        )
+        presenter?.loadClassification(
+            arguments?.getString("idUnity"),
+            arguments?.getString("idBed")
+        )
     }
 
-    override fun setAdapter(bedList: MutableList<Bed>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun setAdapter(
+        idUnity: String?,
+        idBed: String?,
+        classificationList: MutableList<Classification>
+    ) {
+        val adapter = ClassificationAdapter(
+            idUnity,
+            idBed,
+            classificationList,
+            object : MainAdapterContract.ClassificationAdapter {
+                override fun onClickClassification(
+                    idUnity: String?,
+                    idBed: String?,
+                    idClassification: String?,
+                    dateClassification: Long?
+                ) {
+                    listener?.onClickClassification(
+                        idUnity,
+                        idBed,
+                        idClassification,
+                        dateClassification
+                    )
+                }
+            })
+        adapter.notifyDataSetChanged()
+        recyclerClassification.adapter = adapter
     }
 
     override fun showMessage(msg: String, infinite: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
     }
 
     override fun onDestroy() {

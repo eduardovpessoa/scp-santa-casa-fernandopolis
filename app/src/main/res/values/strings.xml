@@ -8,7 +8,7 @@
     <string name="action_settings">Configurações</string>
 
     <string name="menu_home">Início</string>
-    <string name="menu_unity">Unidades</string>
+    <string name="menu_classification">Classificação</string>
     <string name="menu_config">Configurações</string>
     <string name="menu_about">Sobre</string>
     <string name="menu_exit">Sair</string>

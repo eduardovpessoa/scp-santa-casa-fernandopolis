@@ -7,24 +7,31 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import br.com.eduardovpessoa.santacasafernandopolis.R
-import br.com.eduardovpessoa.santacasafernandopolis.data.model.Bed
-import br.com.eduardovpessoa.santacasafernandopolis.data.model.Unity
+import br.com.eduardovpessoa.santacasafernandopolis.data.model.Classification
 import br.com.eduardovpessoa.santacasafernandopolis.ui.main.MainAdapterContract
 
 class ClassificationAdapter(
-    private val bedList: MutableList<Bed>?,
-    private val classificationListener: MainAdapterContract.UnityAdapter?
+    private val idUnity: String?,
+    private val idBed: String?,
+    private val classificationList: MutableList<Classification>?,
+    private val classificationListener: MainAdapterContract.ClassificationAdapter?
 ) :
     RecyclerView.Adapter<ClassificationAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindView(unityList?.get(position), position % 2 != 0, unityListener)
+        holder.bindView(
+            idUnity,
+            idBed,
+            classificationList?.get(position),
+            position % 2 != 0,
+            classificationListener
+        )
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.unity_adapter_row,
+                R.layout.classification_adapter_row,
                 parent,
                 false
             )
@@ -32,13 +39,19 @@ class ClassificationAdapter(
     }
 
     override fun getItemCount(): Int {
-        return unityList?.size ?: 0
+        return classificationList?.size ?: 0
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var name: TextView = itemView.findViewById(R.id.txtUnityName)
-        fun bindView(unity: Unity?, colored: Boolean, unityListener: MainAdapterContract.UnityAdapter?) {
-            name.text = unity?.name
+        var name: TextView = itemView.findViewById(R.id.txtClassificationName)
+        fun bindView(
+            idUnity: String?,
+            idBed: String?,
+            classification: Classification?,
+            colored: Boolean,
+            classificationListener: MainAdapterContract.ClassificationAdapter?
+        ) {
+            name.text = classification?.toString()
             if (colored) itemView.setBackgroundColor(
                 ContextCompat.getColor(
                     itemView.context,
@@ -46,7 +59,12 @@ class ClassificationAdapter(
                 )
             )
             itemView.setOnClickListener {
-                unityListener?.onClickUnity(unity?.id)
+                classificationListener?.onClickClassification(
+                    idUnity,
+                    idBed,
+                    classification?.id,
+                    classification?.registered?.time
+                )
             }
         }
     }
