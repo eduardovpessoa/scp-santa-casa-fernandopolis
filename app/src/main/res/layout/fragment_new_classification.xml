@@ -16,15 +16,28 @@
         android:paddingBottom="32dp">
 
         <TextView
+            android:id="@+id/txtFugolin"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Classificação Fugulin"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/txtEstadoMental"
             style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Estado Mental"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/txtFugolin" />
 
         <RadioGroup
             android:id="@+id/rgEstadoMental"
@@ -36,28 +49,31 @@
             app:layout_constraintTop_toBottomOf="@+id/txtEstadoMental">
 
             <RadioButton
+                android:id="@+id/rbEstadoMental4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="4" />
 
             <RadioButton
+                android:id="@+id/rbEstadoMental3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="3" />
 
             <RadioButton
+                android:id="@+id/rbEstadoMental2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="2" />
 
             <RadioButton
+                android:id="@+id/rbEstadoMental1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
                 android:text="1" />
 
         </RadioGroup>
@@ -71,6 +87,7 @@
             android:text="Oxigenação"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rgEstadoMental" />
 
@@ -84,25 +101,28 @@
             app:layout_constraintTop_toBottomOf="@+id/txtOxigenacao">
 
             <RadioButton
+                android:id="@+id/rbOxigenacao4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="4" />
 
             <RadioButton
+                android:id="@+id/rbOxigenacao3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="3" />
 
             <RadioButton
+                android:id="@+id/rbOxigenacao2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
                 android:text="2" />
 
             <RadioButton
+                android:id="@+id/rbOxigenacao1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -119,6 +139,7 @@
             android:text="Sinais Vitais"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rgOxigenacao" />
 
@@ -132,25 +153,28 @@
             app:layout_constraintTop_toBottomOf="@+id/txtSinaisVitais">
 
             <RadioButton
+                android:id="@+id/rbSinaisVitais4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
                 android:text="4" />
 
             <RadioButton
+                android:id="@+id/rbSinaisVitais3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="3" />
 
             <RadioButton
+                android:id="@+id/rbSinaisVitais2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="2" />
 
             <RadioButton
+                android:id="@+id/rbSinaisVitais1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -167,6 +191,7 @@
             android:text="Mobilidade"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rgSinaisVitais" />
 
@@ -180,25 +205,28 @@
             app:layout_constraintTop_toBottomOf="@+id/txtMobilidade">
 
             <RadioButton
+                android:id="@+id/rbMobilidade4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="4" />
 
             <RadioButton
+                android:id="@+id/rbMobilidade3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
                 android:text="3" />
 
             <RadioButton
+                android:id="@+id/rbMobilidade2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="2" />
 
             <RadioButton
+                android:id="@+id/rbMobilidade1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -215,6 +243,7 @@
             android:text="Deambulação"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rgMobilidade" />
 
@@ -228,25 +257,28 @@
             app:layout_constraintTop_toBottomOf="@+id/txtDeambulacao">
 
             <RadioButton
+                android:id="@+id/rbDeambulacao4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="4" />
 
             <RadioButton
+                android:id="@+id/rbDeambulacao3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="3" />
 
             <RadioButton
+                android:id="@+id/rbDeambulacao2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
                 android:text="2" />
 
             <RadioButton
+                android:id="@+id/rbDeambulacao1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -263,6 +295,7 @@
             android:text="Alimentação"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rgDeambulacao" />
 
@@ -276,28 +309,31 @@
             app:layout_constraintTop_toBottomOf="@+id/txtAlimentacao">
 
             <RadioButton
+                android:id="@+id/rbAlimentacao4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="4" />
 
             <RadioButton
+                android:id="@+id/rbAlimentacao3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="3" />
 
             <RadioButton
+                android:id="@+id/rbAlimentacao2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="2" />
 
             <RadioButton
+                android:id="@+id/rbAlimentacao1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
                 android:text="1" />
 
         </RadioGroup>
@@ -311,6 +347,7 @@
             android:text="Cuidado Corporal"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rgAlimentacao" />
 
@@ -324,25 +361,28 @@
             app:layout_constraintTop_toBottomOf="@+id/txtCuidadoCorporal">
 
             <RadioButton
+                android:id="@+id/rbCuidadoCorporal4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="4" />
 
             <RadioButton
+                android:id="@+id/rbCuidadoCorporal3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
                 android:text="3" />
 
             <RadioButton
+                android:id="@+id/rbCuidadoCorporal2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="2" />
 
             <RadioButton
+                android:id="@+id/rbCuidadoCorporal1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -359,6 +399,7 @@
             android:text="Eliminação"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rgCuidadoCorporal" />
 
@@ -372,25 +413,28 @@
             app:layout_constraintTop_toBottomOf="@+id/txtEliminacao">
 
             <RadioButton
+                android:id="@+id/rbEliminacao4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
                 android:text="4" />
 
             <RadioButton
+                android:id="@+id/rbEliminacao3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="3" />
 
             <RadioButton
+                android:id="@+id/rbEliminacao2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="2" />
 
             <RadioButton
+                android:id="@+id/rbEliminacao1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -407,6 +451,7 @@
             android:text="Terapêutica"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rgEliminacao" />
 
@@ -420,25 +465,28 @@
             app:layout_constraintTop_toBottomOf="@+id/txtTerapeutica">
 
             <RadioButton
+                android:id="@+id/rbTerapeutica4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="4" />
 
             <RadioButton
+                android:id="@+id/rbTerapeutica3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="3" />
 
             <RadioButton
+                android:id="@+id/rbTerapeutica2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
                 android:text="2" />
 
             <RadioButton
+                android:id="@+id/rbTerapeutica1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -455,6 +503,7 @@
             android:text="Integr. cutâneo-mucosa / compr. tecidual"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rgTerapeutica" />
 
@@ -468,28 +517,31 @@
             app:layout_constraintTop_toBottomOf="@+id/txtIntegridade">
 
             <RadioButton
+                android:id="@+id/rbIntegridade4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="4" />
 
             <RadioButton
+                android:id="@+id/rbIntegridade3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="3" />
 
             <RadioButton
+                android:id="@+id/rbIntegridade2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="2" />
 
             <RadioButton
+                android:id="@+id/rbIntegridade1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
                 android:text="1" />
 
         </RadioGroup>
@@ -503,6 +555,7 @@
             android:text="Curativo"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rgIntegridade" />
 
@@ -516,25 +569,28 @@
             app:layout_constraintTop_toBottomOf="@+id/txtCurativo">
 
             <RadioButton
+                android:id="@+id/rbCurativo4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
                 android:text="4" />
 
             <RadioButton
+                android:id="@+id/rbCurativo3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="3" />
 
             <RadioButton
+                android:id="@+id/rbCurativo2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="2" />
 
             <RadioButton
+                android:id="@+id/rbCurativo1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -551,6 +607,7 @@
             android:text="Tempo utilizado na realização dos curativos"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rgCurativo" />
 
@@ -564,25 +621,28 @@
             app:layout_constraintTop_toBottomOf="@+id/txtTempoCurativo">
 
             <RadioButton
+                android:id="@+id/rbTempoCurativo4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="4" />
 
             <RadioButton
+                android:id="@+id/rbTempoCurativo3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:checked="true"
                 android:text="3" />
 
             <RadioButton
+                android:id="@+id/rbTempoCurativo2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="2" />
 
             <RadioButton
+                android:id="@+id/rbTempoCurativo1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -591,60 +651,210 @@
         </RadioGroup>
 
         <TextView
-            android:id="@+id/txtClassificacao"
+            android:id="@+id/txtBraden"
             style="@style/TextAppearance.AppCompat.Large"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Categorias de Cuidados"
-            android:textAlignment="center"
-            android:textStyle="bold"
+            android:text="Classificação Braden"
+            android:textColor="@color/colorAccent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rgTempoCurativo" />
 
         <TextView
-            android:id="@+id/txtPontuacao"
+            android:id="@+id/txtNutricao"
             style="@style/TextAppearance.AppCompat.Medium"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="30 Pts. (Semi-intensivo)"
-            android:textAlignment="center"
-            android:textColor="#DD2C00"
-            android:textSize="24sp"
+            android:text="Nutrição"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtClassificacao" />
+            app:layout_constraintTop_toBottomOf="@+id/txtBraden" />
+
+        <RadioGroup
+            android:id="@+id/rgNutricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtNutricao">
+
+            <RadioButton
+                android:id="@+id/rbNutricao1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1" />
+
+            <RadioButton
+                android:id="@+id/rbNutricao2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="2" />
+
+            <RadioButton
+                android:id="@+id/rbNutricao3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="3" />
+
+            <RadioButton
+                android:id="@+id/rbNutricao4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="4" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txtUmidade"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Umidade"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rgNutricao" />
+
+        <RadioGroup
+            android:id="@+id/rgUmidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtUmidade">
+
+            <RadioButton
+                android:id="@+id/rbUmidade1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="1" />
+
+            <RadioButton
+                android:id="@+id/rbUmidade2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="2" />
+
+            <RadioButton
+                android:id="@+id/rbUmidade3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="3" />
+
+            <RadioButton
+                android:id="@+id/rbUmidade4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="4" />
+
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/txtTotalPontos"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Total de Pontos"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rgUmidade" />
+
+        <TextView
+            android:id="@+id/txtPontosBraden"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Braden: "
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtTotalPontos" />
+
+        <TextView
+            android:id="@+id/txtTotalBraden"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/txtPontosBraden"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtPontosBraden"
+            app:layout_constraintTop_toTopOf="@+id/txtPontosBraden" />
+
+        <TextView
+            android:id="@+id/txtPontosFugulin"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Fugulin: "
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtPontosBraden" />
+
+        <TextView
+            android:id="@+id/txtTotalFugulin"
+            style="@style/TextAppearance.AppCompat.Medium"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textColor="@color/colorAccent"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/txtPontosFugulin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtPontosFugulin"
+            app:layout_constraintTop_toTopOf="@+id/txtPontosFugulin" />
 
         <ImageView
             android:id="@+id/imgIntensivo"
             android:layout_width="30dp"
             android:layout_height="20dp"
-            android:layout_marginTop="16dp"
-            android:src="#D50000"
+            android:layout_marginTop="24dp"
+            android:src="#000000"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txtPontuacao" />
+            app:layout_constraintTop_toBottomOf="@+id/txtPontosFugulin" />
 
         <TextView
             android:id="@+id/txtIntensivo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="24dp"
             android:text="Intensivo (+34)"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/imgIntensivo"
-            app:layout_constraintTop_toBottomOf="@+id/txtPontuacao" />
+            app:layout_constraintTop_toBottomOf="@+id/txtPontosFugulin" />
 
         <ImageView
             android:id="@+id/imgSemiIntensivo"
             android:layout_width="30dp"
             android:layout_height="20dp"
             android:layout_marginTop="16dp"
-            android:src="#DD2C00"
+            android:src="#D50000"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtIntensivo" />
 
@@ -686,7 +896,7 @@
             android:layout_width="30dp"
             android:layout_height="20dp"
             android:layout_marginTop="16dp"
-            android:src="#FFAB00"
+            android:src="#EEEE00"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtAltaDependencia" />
 
@@ -707,7 +917,7 @@
             android:layout_width="30dp"
             android:layout_height="20dp"
             android:layout_marginTop="16dp"
-            android:src="#FFD600"
+            android:src="#11AA11"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtIntermediario" />
 

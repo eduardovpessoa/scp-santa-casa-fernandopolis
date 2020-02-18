@@ -14,6 +14,15 @@ interface MainAdapterContract {
         )
     }
 
+    interface NewClassificationAdapter {
+        fun onClickNewClassification(
+            idUnity: String?,
+            idBed: String?,
+            idClassification: String?,
+            dateClassification: Long?
+        )
+    }
+
     interface UnityAdapter {
         fun onClickUnity(idUnity: String?, nameUnity: String?)
     }
