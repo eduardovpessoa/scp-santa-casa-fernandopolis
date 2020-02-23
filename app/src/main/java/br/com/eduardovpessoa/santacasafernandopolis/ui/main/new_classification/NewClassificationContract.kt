@@ -1,7 +1,11 @@
 package br.com.eduardovpessoa.santacasafernandopolis.ui.main.new_classification
 
+import br.com.eduardovpessoa.santacasafernandopolis.data.model.Classification
+
 interface NewClassificationContract {
     interface View {
+        fun initViews()
+        fun validadeClassification()
         fun calcBraden(): Int
         fun calcFugulin(): Int
         fun sumEstadoMental(): Int
@@ -28,6 +32,7 @@ interface NewClassificationContract {
 
     interface Presenter {
         fun loadClassification(idUnity: String?, idBed: String?, idClassification: String?)
+        fun saveClassification(classification: Classification?)
         fun onDestroy()
     }
 }

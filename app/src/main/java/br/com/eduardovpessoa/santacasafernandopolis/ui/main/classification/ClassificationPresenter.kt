@@ -3,7 +3,6 @@ package br.com.eduardovpessoa.santacasafernandopolis.ui.main.classification
 import android.util.Log
 import br.com.eduardovpessoa.santacasafernandopolis.data.model.Classification
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 
 class ClassificationPresenter(var view: ClassificationContract.View?) :
     ClassificationContract.Presenter {
@@ -12,6 +11,7 @@ class ClassificationPresenter(var view: ClassificationContract.View?) :
     private var classificationList: MutableList<Classification> = arrayListOf()
 
     override fun loadClassification(idUnity: String?, idBed: String?) {
+        view?.showMessage("Carregando Classificações...", true)
         db.collection("unity")
             .document(idUnity.toString())
             .collection("bed")
@@ -20,9 +20,12 @@ class ClassificationPresenter(var view: ClassificationContract.View?) :
             .whereEqualTo("status", true)
             .get().addOnSuccessListener { it ->
                 it.forEach {
-                    classificationList.add(it.toObject(Classification::class.java))
+                    for (i in 1..30) {
+                        classificationList.add(it.toObject(Classification::class.java))
+                    }
                 }.run {
                     view?.setAdapter(idUnity, idBed, classificationList)
+                    view?.dismissMessage()
                 }
             }.addOnFailureListener { exception ->
                 Log.e(ClassificationPresenter::class.java.name, exception.message!!)

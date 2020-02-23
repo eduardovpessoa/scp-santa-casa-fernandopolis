@@ -17,9 +17,7 @@ interface MainAdapterContract {
     interface NewClassificationAdapter {
         fun onClickNewClassification(
             idUnity: String?,
-            idBed: String?,
-            idClassification: String?,
-            dateClassification: Long?
+            idBed: String?
         )
     }
 

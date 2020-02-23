@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.RadioGroup
 
 import br.com.eduardovpessoa.santacasafernandopolis.R
+import br.com.eduardovpessoa.santacasafernandopolis.data.model.Classification
 import kotlinx.android.synthetic.main.fragment_new_classification.*
 
 class NewClassificationFragment : Fragment(), NewClassificationContract.View {
@@ -37,6 +38,9 @@ class NewClassificationFragment : Fragment(), NewClassificationContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun initViews() {
         rgEstadoMental.setOnCheckedChangeListener { _, _ ->
             calcFugulin()
             calcBraden()
@@ -63,8 +67,77 @@ class NewClassificationFragment : Fragment(), NewClassificationContract.View {
         rgUmidade.setOnCheckedChangeListener { _, _ -> calcBraden() }
         rgEliminacao.setOnCheckedChangeListener { _, _ -> calcFugulin() }
         rgTerapeutica.setOnCheckedChangeListener { _, _ -> calcFugulin() }
-
+        btnSave.setOnClickListener { validadeClassification() }
     }
+
+    override fun validadeClassification() {
+        var msg: String = ""
+
+        if (rgTerapeutica.checkedRadioButtonId == -1) {
+            rgTerapeutica.requestFocus()
+            msg = "Avalie a Terapêutica!"
+        }
+        if (rgEliminacao.checkedRadioButtonId == -1) {
+            rgEliminacao.requestFocus()
+            msg = "Avalie a Eliminação!"
+        }
+        if (rgUmidade.checkedRadioButtonId == -1) {
+            rgUmidade.requestFocus()
+            msg = "Avalie a Umidade!"
+        }
+        if (rgTempoCurativo.checkedRadioButtonId == -1) {
+            rgTempoCurativo.requestFocus()
+            msg = "Avalie o Tempo do Curativo!"
+        }
+        if (rgCurativo.checkedRadioButtonId == -1) {
+            rgCurativo.requestFocus()
+            msg = "Avalie o Curativo!"
+        }
+
+
+
+        if (rgIntegridade.checkedRadioButtonId == -1) {
+            rgIntegridade.requestFocus()
+            msg = "Avalie a Integridade!"
+        }
+
+
+        if (rgEstadoMental.checkedRadioButtonId == -1) {
+            rgEstadoMental.requestFocus()
+            msg = "Avalie o Estado Mental!"
+        }
+        if (rgOxigenacao.checkedRadioButtonId == -1) {
+            rgOxigenacao.requestFocus()
+            msg = "Avalie a Oxigenação!"
+        }
+        if (rgSinaisVitais.checkedRadioButtonId == -1) {
+            rgSinaisVitais.requestFocus()
+            msg = "Avalie os Sinais Vitais!"
+        }
+        if (rgDeambulacao.checkedRadioButtonId == -1) {
+            rgDeambulacao.requestFocus()
+            msg = "Avalie a Deambulação!"
+        }
+        if (rgMobilidade.checkedRadioButtonId == -1) {
+            rgMobilidade.requestFocus()
+            msg = "Avalie a Mobilidade!"
+        }
+        if (rgAlimentacao.checkedRadioButtonId == -1) {
+            rgAlimentacao.requestFocus()
+            msg = "Avalie a Alimentação!"
+        }
+        if (rgNutricao.checkedRadioButtonId == -1) {
+            rgNutricao.requestFocus()
+            msg = "Avalie a Nutrição!"
+        }
+        if (rgCuidadoCorporal.checkedRadioButtonId == -1) {
+            rgCuidadoCorporal.requestFocus()
+            msg = "Avalie o Cuidado Corporal!"
+        }
+
+        presenter?.saveClassification(Classification())
+    }
+
 
     override fun calcBraden(): Int {
         var totalBraden = 0

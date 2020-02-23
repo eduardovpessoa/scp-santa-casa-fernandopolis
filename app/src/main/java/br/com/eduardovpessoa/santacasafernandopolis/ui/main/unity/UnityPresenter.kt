@@ -14,14 +14,17 @@ class UnityPresenter(var view: UnityContract.View?) : UnityContract.Presenter {
     }
 
     override fun loadUnity() {
+        view?.showMessage("Carregando Unidades...", true)
         db.collection("unity")
             .whereEqualTo("status", true)
             .orderBy("name")
             .get().addOnSuccessListener { it ->
+                view?.showMessage("Carregando unidades...", true)
                 it.forEach {
                     unityList.add(it.toObject(Unity::class.java))
                 }.run {
                     view?.setAdapter(unityList)
+                    view?.dismissMessage()
                 }
             }.addOnFailureListener { exception ->
                 Log.e(UnityPresenter::class.java.name, exception.message!!)

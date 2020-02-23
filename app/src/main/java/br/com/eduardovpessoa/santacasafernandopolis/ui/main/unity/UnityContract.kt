@@ -6,6 +6,7 @@ interface UnityContract {
     interface View{
         fun setAdapter(unityList : MutableList<Unity>)
         fun showMessage(msg : String, infinite : Boolean)
+        fun dismissMessage()
         fun onDestroy()
     }
     interface Presenter{

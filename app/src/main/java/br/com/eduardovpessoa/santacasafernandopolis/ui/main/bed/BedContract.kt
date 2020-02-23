@@ -6,6 +6,7 @@ interface BedContract {
     interface View{
         fun setAdapter(idUnity: String?, bedList : MutableList<Bed>)
         fun showMessage(msg : String, infinite : Boolean)
+        fun dismissMessage()
         fun onDestroy()
     }
     interface Presenter{

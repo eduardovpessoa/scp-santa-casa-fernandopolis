@@ -13,14 +13,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import br.com.eduardovpessoa.santacasafernandopolis.R
 import br.com.eduardovpessoa.santacasafernandopolis.data.model.Classification
+import br.com.eduardovpessoa.santacasafernandopolis.data.util.EmptyAdapter
 import br.com.eduardovpessoa.santacasafernandopolis.ui.main.MainAdapterContract
 import br.com.eduardovpessoa.santacasafernandopolis.ui.main.bed.BedFragment
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_classification.*
 
 class ClassificationFragment : Fragment(), ClassificationContract.View {
 
     private var presenter: ClassificationContract.Presenter? = null
     private var listener: MainAdapterContract.ClassificationAdapter? = null
+    private lateinit var viewClassification: View
+    private lateinit var snackbar: Snackbar
 
     companion object {
         @JvmStatic
@@ -37,7 +41,7 @@ class ClassificationFragment : Fragment(), ClassificationContract.View {
         if (context is MainAdapterContract.ClassificationAdapter) {
             listener = context
         } else {
-            Log.e("", "deu ruim")
+            Log.e(ClassificationFragment::class.java.name, "onAttach error!")
         }
     }
 
@@ -50,6 +54,8 @@ class ClassificationFragment : Fragment(), ClassificationContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        recyclerClassification.adapter = EmptyAdapter()
+        viewClassification = view
         presenter = ClassificationPresenter(this)
         recyclerClassification.layoutManager = LinearLayoutManager(view.context)
         recyclerClassification.addItemDecoration(
@@ -93,8 +99,15 @@ class ClassificationFragment : Fragment(), ClassificationContract.View {
     }
 
     override fun showMessage(msg: String, infinite: Boolean) {
-
+        snackbar = Snackbar.make(
+            viewClassification.findViewById(R.id.recyclerClassification),
+            msg,
+            if (infinite) Snackbar.LENGTH_INDEFINITE else Snackbar.LENGTH_LONG
+        )
+        snackbar.show()
     }
+
+    override fun dismissMessage() = snackbar.dismiss()
 
     override fun onDestroy() {
         presenter?.onDestroy()

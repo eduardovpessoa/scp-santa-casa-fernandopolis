@@ -23,7 +23,6 @@ class ClassificationAdapter(
             idUnity,
             idBed,
             classificationList?.get(position),
-            position % 2 != 0,
             classificationListener
         )
     }
@@ -48,16 +47,9 @@ class ClassificationAdapter(
             idUnity: String?,
             idBed: String?,
             classification: Classification?,
-            colored: Boolean,
             classificationListener: MainAdapterContract.ClassificationAdapter?
         ) {
             name.text = classification?.toString()
-            if (colored) itemView.setBackgroundColor(
-                ContextCompat.getColor(
-                    itemView.context,
-                    R.color.backgroundDarkGrey
-                )
-            )
             itemView.setOnClickListener {
                 classificationListener?.onClickClassification(
                     idUnity,

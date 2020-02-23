@@ -18,7 +18,7 @@ class BedAdapter(
     RecyclerView.Adapter<BedAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindView(idUnity, bedList?.get(position), position % 2 != 0, bedListener)
+        holder.bindView(idUnity, bedList?.get(position), bedListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -40,16 +40,9 @@ class BedAdapter(
         fun bindView(
             idUnity: String?,
             bed: Bed?,
-            colored: Boolean,
             bedListener: MainAdapterContract.BedAdapter?
         ) {
             name.text = bed?.name
-            if (colored) itemView.setBackgroundColor(
-                ContextCompat.getColor(
-                    itemView.context,
-                    R.color.backgroundDarkGrey
-                )
-            )
             itemView.setOnClickListener {
                 bedListener?.onClickBed(idUnity, bed?.id, bed?.name)
             }

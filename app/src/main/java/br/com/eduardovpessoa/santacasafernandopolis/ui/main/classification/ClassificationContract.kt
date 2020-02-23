@@ -6,6 +6,7 @@ interface ClassificationContract {
     interface View{
         fun setAdapter(idUnity: String?, idBed : String?, classificationList : MutableList<Classification>)
         fun showMessage(msg : String, infinite : Boolean)
+        fun dismissMessage()
         fun onDestroy()
     }
     interface Presenter{

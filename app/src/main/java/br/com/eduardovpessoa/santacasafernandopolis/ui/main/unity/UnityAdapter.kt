@@ -17,7 +17,7 @@ class UnityAdapter(
     RecyclerView.Adapter<UnityAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindView(unityList?.get(position), position % 2 != 0, unityListener)
+        holder.bindView(unityList?.get(position), unityListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,16 +38,9 @@ class UnityAdapter(
         var name: TextView = itemView.findViewById(R.id.txtUnityName)
         fun bindView(
             unity: Unity?,
-            colored: Boolean,
             unityListener: MainAdapterContract.UnityAdapter?
         ) {
             name.text = unity?.name
-            if (colored) itemView.setBackgroundColor(
-                ContextCompat.getColor(
-                    itemView.context,
-                    R.color.backgroundDarkGrey
-                )
-            )
             itemView.setOnClickListener {
                 unityListener?.onClickUnity(unity?.id, unity?.name)
             }

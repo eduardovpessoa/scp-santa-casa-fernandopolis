@@ -10,6 +10,7 @@ class BedPresenter(var view: BedContract.View?) : BedContract.Presenter {
     private var bedList: MutableList<Bed> = arrayListOf()
 
     override fun loadBed(idUnity: String?) {
+        view?.showMessage("Carregando Leitos...", true)
         db.collection("unity")
             .document(idUnity.toString())
             .collection("bed")
@@ -19,6 +20,7 @@ class BedPresenter(var view: BedContract.View?) : BedContract.Presenter {
                     bedList.add(it.toObject(Bed::class.java))
                 }.run {
                     view?.setAdapter(idUnity, bedList)
+                    view?.dismissMessage()
                 }
             }.addOnFailureListener { exception ->
                 Log.e(BedPresenter::class.java.name, exception.message!!)

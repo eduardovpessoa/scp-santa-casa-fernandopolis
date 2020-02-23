@@ -13,13 +13,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import br.com.eduardovpessoa.santacasafernandopolis.R
 import br.com.eduardovpessoa.santacasafernandopolis.data.model.Bed
+import br.com.eduardovpessoa.santacasafernandopolis.data.util.EmptyAdapter
 import br.com.eduardovpessoa.santacasafernandopolis.ui.main.MainAdapterContract
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_bed.*
 
 class BedFragment : Fragment(), BedContract.View {
 
     private var presenter: BedContract.Presenter? = null
     private var listener: MainAdapterContract.BedAdapter? = null
+    private lateinit var viewBed: View
+    private lateinit var snackbar: Snackbar
 
     companion object {
         @JvmStatic
@@ -36,7 +40,7 @@ class BedFragment : Fragment(), BedContract.View {
         if (context is MainAdapterContract.BedAdapter) {
             listener = context
         } else {
-            Log.e("", "deu ruim")
+            Log.e(BedFragment::class.java.name, "onAttach error!")
         }
     }
 
@@ -49,6 +53,8 @@ class BedFragment : Fragment(), BedContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        recyclerBed.adapter = EmptyAdapter()
+        viewBed = view
         presenter = BedPresenter(this)
         recyclerBed.layoutManager = LinearLayoutManager(view.context)
         recyclerBed.addItemDecoration(
@@ -74,8 +80,15 @@ class BedFragment : Fragment(), BedContract.View {
     }
 
     override fun showMessage(msg: String, infinite: Boolean) {
-
+        snackbar = Snackbar.make(
+            viewBed.findViewById(R.id.recyclerBed),
+            msg,
+            if (infinite) Snackbar.LENGTH_INDEFINITE else Snackbar.LENGTH_LONG
+        )
+        snackbar.show()
     }
+
+    override fun dismissMessage() = snackbar.dismiss()
 
     override fun onDestroy() {
         presenter?.onDestroy()
