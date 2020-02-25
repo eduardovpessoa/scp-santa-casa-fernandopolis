@@ -1,10 +1,8 @@
 package br.com.eduardovpessoa.santacasafernandopolis.ui.login
 
-import android.content.Intent
-import br.com.eduardovpessoa.santacasafernandopolis.ui.main.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 
-class LoginPresenter(var view: LoginContract.View?, var activity: LoginActivity) :
+class LoginPresenter(var view: LoginContract.View?) :
     LoginContract.Presenter {
 
     private var fbAuth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -16,11 +14,7 @@ class LoginPresenter(var view: LoginContract.View?, var activity: LoginActivity)
 
     override fun verifyLoggedIn() {
         if (fbAuth.currentUser != null) {
-            val intent = Intent(activity, MainActivity::class.java)
-            intent.putExtra("id", fbAuth.currentUser?.uid)
-            intent.putExtra("email", fbAuth.currentUser?.email)
-            view?.changeActivity(intent)
-
+            view?.changeActivity(fbAuth.currentUser?.uid, fbAuth.currentUser?.uid)
         }
     }
 
@@ -36,20 +30,18 @@ class LoginPresenter(var view: LoginContract.View?, var activity: LoginActivity)
 
         view?.showMessage("Autenticando...", true)
         fbAuth.signInWithEmailAndPassword(email, passwd)
-            .addOnCompleteListener(activity) { task ->
+            .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     view?.showMessage("Sucesso!", false)
                     verifyLoggedIn()
                 } else {
                     view?.showMessage("Erro: ${task.exception?.message}", false)
                 }
-
             }
     }
 
     override fun onDestroy() {
         view = null
     }
-
 
 }

@@ -4,18 +4,16 @@ package br.com.eduardovpessoa.santacasafernandopolis.ui.main.unity
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import br.com.eduardovpessoa.santacasafernandopolis.R
 import br.com.eduardovpessoa.santacasafernandopolis.data.model.Unity
 import br.com.eduardovpessoa.santacasafernandopolis.data.util.EmptyAdapter
 import br.com.eduardovpessoa.santacasafernandopolis.ui.main.MainAdapterContract
-import br.com.eduardovpessoa.santacasafernandopolis.ui.main.MainContract
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_unity.*
 

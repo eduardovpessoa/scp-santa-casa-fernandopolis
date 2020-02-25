@@ -1,9 +1,10 @@
 package br.com.eduardovpessoa.santacasafernandopolis.ui.login
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import br.com.eduardovpessoa.santacasafernandopolis.R
+import br.com.eduardovpessoa.santacasafernandopolis.ui.main.MainActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -13,7 +14,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        presenter = LoginPresenter(this, this)
+        presenter = LoginPresenter(this)
     }
 
     override fun initViews() {
@@ -54,8 +55,12 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         }
     }
 
-    override fun changeActivity(intent: Intent?) {
-        startActivity(intent)
+    override fun changeActivity(id: String?, email: String?) {
+        startActivity(
+            Intent(this, MainActivity::class.java)
+                .putExtra("id", id)
+                .putExtra("email", email)
+        )
         finish()
     }
 
@@ -64,4 +69,5 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
         presenter = null
         super.onDestroy()
     }
+
 }

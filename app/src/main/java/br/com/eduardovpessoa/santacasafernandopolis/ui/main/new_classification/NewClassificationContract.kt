@@ -5,7 +5,8 @@ import br.com.eduardovpessoa.santacasafernandopolis.data.model.Classification
 interface NewClassificationContract {
     interface View {
         fun initViews()
-        fun validadeClassification()
+        fun validadeClassification(): Boolean
+        fun pushClassification()
         fun calcBraden(): Int
         fun calcFugulin(): Int
         fun sumEstadoMental(): Int
@@ -27,12 +28,14 @@ interface NewClassificationContract {
         fun sumNutricao(): Int
         fun sumUmidade(): Int
         fun showMessage(msg: String, infinite: Boolean)
+        fun dismissMessage()
+        fun setClassification(classification: Classification?)
         fun onDestroy()
     }
 
     interface Presenter {
         fun loadClassification(idUnity: String?, idBed: String?, idClassification: String?)
-        fun saveClassification(classification: Classification?)
+        fun saveClassification(idUnity: String?, idBed: String?, classification: Classification?)
         fun onDestroy()
     }
 }

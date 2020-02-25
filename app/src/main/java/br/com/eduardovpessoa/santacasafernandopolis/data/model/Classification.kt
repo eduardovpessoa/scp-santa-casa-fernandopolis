@@ -21,12 +21,13 @@ data class Classification(
     val status: Boolean = true,
     val tempoCurativo: Int = 0,
     val terapeutica: Int = 0,
-    val total: Int = 0
+    val totalBraden: Int = 0,
+    val totalFugulin: Int = 0
 ) {
     override fun toString(): String {
         return "Data: ${SimpleDateFormat(
-            "dd/MM/YYYY",
+            "dd/MM/yyyy",
             Locale("pt", "BR")
-        ).format(registered)} - Pontos: $total"
+        ).format(registered)} - ${if (id.isEmpty()) "Nova Class." else "Pontos: F$totalFugulin - B$totalBraden"}"
     }
 }

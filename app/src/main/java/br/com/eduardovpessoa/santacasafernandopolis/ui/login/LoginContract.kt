@@ -1,7 +1,5 @@
 package br.com.eduardovpessoa.santacasafernandopolis.ui.login
 
-import android.content.Intent
-
 interface LoginContract {
     interface View{
         fun initViews()
@@ -9,7 +7,7 @@ interface LoginContract {
         fun errorInvalidEmail(error : String)
         fun errorInvalidPass(error : String)
         fun showMessage(msg : String, infinite : Boolean)
-        fun changeActivity(intent : Intent?)
+        fun changeActivity(id : String?, email : String?)
         fun onDestroy()
     }
     interface Presenter{

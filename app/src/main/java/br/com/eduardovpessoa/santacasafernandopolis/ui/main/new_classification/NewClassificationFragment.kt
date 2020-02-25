@@ -2,19 +2,20 @@ package br.com.eduardovpessoa.santacasafernandopolis.ui.main.new_classification
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioGroup
-
+import androidx.fragment.app.Fragment
 import br.com.eduardovpessoa.santacasafernandopolis.R
 import br.com.eduardovpessoa.santacasafernandopolis.data.model.Classification
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_new_classification.*
 
 class NewClassificationFragment : Fragment(), NewClassificationContract.View {
 
     private var presenter: NewClassificationContract.Presenter? = null
+    private lateinit var viewNewClassification: View
+    private lateinit var snackbar: Snackbar
 
     companion object {
         @JvmStatic
@@ -38,6 +39,8 @@ class NewClassificationFragment : Fragment(), NewClassificationContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewNewClassification = view
+        presenter = NewClassificationPresenter(this, arguments.getString("idUnity"))
     }
 
     override fun initViews() {
@@ -67,11 +70,11 @@ class NewClassificationFragment : Fragment(), NewClassificationContract.View {
         rgUmidade.setOnCheckedChangeListener { _, _ -> calcBraden() }
         rgEliminacao.setOnCheckedChangeListener { _, _ -> calcFugulin() }
         rgTerapeutica.setOnCheckedChangeListener { _, _ -> calcFugulin() }
-        btnSave.setOnClickListener { validadeClassification() }
+        btnSave.setOnClickListener { if (validadeClassification()) pushClassification() }
     }
 
-    override fun validadeClassification() {
-        var msg: String = ""
+    override fun validadeClassification(): Boolean {
+        var msg = ""
 
         if (rgTerapeutica.checkedRadioButtonId == -1) {
             rgTerapeutica.requestFocus()
@@ -93,51 +96,70 @@ class NewClassificationFragment : Fragment(), NewClassificationContract.View {
             rgCurativo.requestFocus()
             msg = "Avalie o Curativo!"
         }
-
-
-
         if (rgIntegridade.checkedRadioButtonId == -1) {
             rgIntegridade.requestFocus()
             msg = "Avalie a Integridade!"
-        }
-
-
-        if (rgEstadoMental.checkedRadioButtonId == -1) {
-            rgEstadoMental.requestFocus()
-            msg = "Avalie o Estado Mental!"
-        }
-        if (rgOxigenacao.checkedRadioButtonId == -1) {
-            rgOxigenacao.requestFocus()
-            msg = "Avalie a Oxigenação!"
-        }
-        if (rgSinaisVitais.checkedRadioButtonId == -1) {
-            rgSinaisVitais.requestFocus()
-            msg = "Avalie os Sinais Vitais!"
-        }
-        if (rgDeambulacao.checkedRadioButtonId == -1) {
-            rgDeambulacao.requestFocus()
-            msg = "Avalie a Deambulação!"
-        }
-        if (rgMobilidade.checkedRadioButtonId == -1) {
-            rgMobilidade.requestFocus()
-            msg = "Avalie a Mobilidade!"
-        }
-        if (rgAlimentacao.checkedRadioButtonId == -1) {
-            rgAlimentacao.requestFocus()
-            msg = "Avalie a Alimentação!"
-        }
-        if (rgNutricao.checkedRadioButtonId == -1) {
-            rgNutricao.requestFocus()
-            msg = "Avalie a Nutrição!"
         }
         if (rgCuidadoCorporal.checkedRadioButtonId == -1) {
             rgCuidadoCorporal.requestFocus()
             msg = "Avalie o Cuidado Corporal!"
         }
+        if (rgNutricao.checkedRadioButtonId == -1) {
+            rgNutricao.requestFocus()
+            msg = "Avalie a Nutrição!"
+        }
+        if (rgAlimentacao.checkedRadioButtonId == -1) {
+            rgAlimentacao.requestFocus()
+            msg = "Avalie a Alimentação!"
+        }
+        if (rgMobilidade.checkedRadioButtonId == -1) {
+            rgMobilidade.requestFocus()
+            msg = "Avalie a Mobilidade!"
+        }
+        if (rgDeambulacao.checkedRadioButtonId == -1) {
+            rgDeambulacao.requestFocus()
+            msg = "Avalie a Deambulação!"
+        }
+        if (rgSinaisVitais.checkedRadioButtonId == -1) {
+            rgSinaisVitais.requestFocus()
+            msg = "Avalie os Sinais Vitais!"
+        }
+        if (rgOxigenacao.checkedRadioButtonId == -1) {
+            rgOxigenacao.requestFocus()
+            msg = "Avalie a Oxigenação!"
+        }
+        if (rgEstadoMental.checkedRadioButtonId == -1) {
+            rgEstadoMental.requestFocus()
+            msg = "Avalie o Estado Mental!"
+        }
 
-        presenter?.saveClassification(Classification())
+        if (msg.isNotEmpty())
+            showMessage(msg, false)
+
+        return msg.isEmpty()
     }
 
+    override fun pushClassification() {
+        presenter?.saveClassification(
+            Classification(
+                id = arguments?.getString("idUnity") ?: "",
+                alimentacao = sumAlimentacao(),
+                cuidadoCorporal = sumCuidadoCorporal(),
+                curativo = sumCurativo(),
+                deambulacao = sumDeambulacao(),
+                eliminacao = sumEliminacao(),
+                estadoMental = sumEstadoMental(),
+                integridade = sumIntegridade(),
+                mobilidade = sumMobilidade(),
+                oxigenacao = sumOxigenacao(),
+                sinaisVitais = sumSinaisVitais(),
+                tempoCurativo = sumTempoCurativo(),
+                terapeutica = sumTerapeutica(),
+                totalBraden = calcBraden(),
+                totalFugulin = calcFugulin()
+            )
+        )
+    }
 
     override fun calcBraden(): Int {
         var totalBraden = 0
@@ -349,8 +371,18 @@ class NewClassificationFragment : Fragment(), NewClassificationContract.View {
         }
     }
 
-
     override fun showMessage(msg: String, infinite: Boolean) {
+        snackbar = Snackbar.make(
+            viewNewClassification.findViewById(R.id.recyclerClassification),
+            msg,
+            if (infinite) Snackbar.LENGTH_INDEFINITE else Snackbar.LENGTH_LONG
+        )
+        snackbar.show()
+    }
+
+    override fun dismissMessage() = snackbar.dismiss()
+
+    override fun setClassification(classification: Classification?) {
 
     }
 
