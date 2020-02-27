@@ -19,7 +19,6 @@ class UnityPresenter(var view: UnityContract.View?) : UnityContract.Presenter {
             .whereEqualTo("status", true)
             .orderBy("name")
             .get().addOnSuccessListener { it ->
-                view?.showMessage("Carregando unidades...", true)
                 it.forEach {
                     unityList.add(it.toObject(Unity::class.java))
                 }.run {

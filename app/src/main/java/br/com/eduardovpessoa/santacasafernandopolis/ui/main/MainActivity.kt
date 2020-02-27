@@ -3,15 +3,14 @@ package br.com.eduardovpessoa.santacasafernandopolis.ui.main
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import androidx.core.view.GravityCompat
-import androidx.appcompat.app.ActionBarDrawerToggle
+import android.view.Menu
 import android.view.MenuItem
-import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.navigation.NavigationView
+import android.widget.Toast
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
-import android.view.Menu
-import android.widget.Toast
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import br.com.eduardovpessoa.santacasafernandopolis.R
@@ -21,10 +20,11 @@ import br.com.eduardovpessoa.santacasafernandopolis.ui.main.classification.Class
 import br.com.eduardovpessoa.santacasafernandopolis.ui.main.home.HomeFragment
 import br.com.eduardovpessoa.santacasafernandopolis.ui.main.new_classification.NewClassificationFragment
 import br.com.eduardovpessoa.santacasafernandopolis.ui.main.unity.UnityFragment
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener,
     MainContract.View, MainAdapterContract.BedAdapter, MainAdapterContract.ClassificationAdapter,
-    MainAdapterContract.UnityAdapter {
+    MainAdapterContract.UnityAdapter, MainAdapterContract.NewClassificationAdapter {
 
     private var presenter: MainContract.Presenter? = null
     private lateinit var fragment: Fragment
@@ -153,7 +153,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             "dd/MM/yyyy",
             Locale("pt", "BR")
         ).format(dateClassification?.let { Date(it).toString() })*/
-        title = "SCP - Class. 17/02/2020"
         replaceFragment(
             NewClassificationFragment.newInstance(
                 idUnity,
@@ -166,5 +165,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onClickUnity(idUnity: String?, nameUnity: String?) {
         title = "SCP - $nameUnity"
         replaceFragment(BedFragment.newInstance(idUnity, nameUnity))
+    }
+
+    override fun onClickNewClassification(idUnity: String?, idBed: String?) {
+        title = "SCP - Nova Classificação"
+        replaceFragment(
+            NewClassificationFragment.newInstance(
+                idUnity,
+                idBed,
+                ""
+            )
+        )
     }
 }

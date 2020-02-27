@@ -17,10 +17,13 @@ data class Classification(
     val mobilidade: Int = 0,
     val oxigenacao: Int = 0,
     val registered: Date = Date(),
+    val updated: Date = Date(),
     val sinaisVitais: Int = 0,
     val status: Boolean = true,
     val tempoCurativo: Int = 0,
     val terapeutica: Int = 0,
+    val nutricao: Int = 0,
+    val umidade: Int = 0,
     val totalBraden: Int = 0,
     val totalFugulin: Int = 0
 ) {

@@ -40,7 +40,12 @@ class NewClassificationFragment : Fragment(), NewClassificationContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewNewClassification = view
-        presenter = NewClassificationPresenter(this, arguments.getString("idUnity"))
+        presenter = NewClassificationPresenter(
+            this,
+            arguments?.getString("idUnity"),
+            arguments?.getString("idBed"),
+            arguments?.getString("idClassification")
+        )
     }
 
     override fun initViews() {
@@ -70,7 +75,7 @@ class NewClassificationFragment : Fragment(), NewClassificationContract.View {
         rgUmidade.setOnCheckedChangeListener { _, _ -> calcBraden() }
         rgEliminacao.setOnCheckedChangeListener { _, _ -> calcFugulin() }
         rgTerapeutica.setOnCheckedChangeListener { _, _ -> calcFugulin() }
-        btnSave.setOnClickListener { if (validadeClassification()) pushClassification() }
+        //btnSave.setOnClickListener { if (validadeClassification()) pushClassification() }
     }
 
     override fun validadeClassification(): Boolean {
@@ -155,6 +160,8 @@ class NewClassificationFragment : Fragment(), NewClassificationContract.View {
                 sinaisVitais = sumSinaisVitais(),
                 tempoCurativo = sumTempoCurativo(),
                 terapeutica = sumTerapeutica(),
+                nutricao = sumNutricao(),
+                umidade = sumUmidade(),
                 totalBraden = calcBraden(),
                 totalFugulin = calcFugulin()
             )
@@ -373,7 +380,7 @@ class NewClassificationFragment : Fragment(), NewClassificationContract.View {
 
     override fun showMessage(msg: String, infinite: Boolean) {
         snackbar = Snackbar.make(
-            viewNewClassification.findViewById(R.id.recyclerClassification),
+            viewNewClassification.findViewById(R.id.scrollNewClassfication),
             msg,
             if (infinite) Snackbar.LENGTH_INDEFINITE else Snackbar.LENGTH_LONG
         )
@@ -383,7 +390,104 @@ class NewClassificationFragment : Fragment(), NewClassificationContract.View {
     override fun dismissMessage() = snackbar.dismiss()
 
     override fun setClassification(classification: Classification?) {
-
+        when (classification?.estadoMental) {
+            1 -> rgEstadoMental.check(rbEstadoMental1.id)
+            2 -> rgEstadoMental.check(rbEstadoMental2.id)
+            3 -> rgEstadoMental.check(rbEstadoMental3.id)
+            4 -> rgEstadoMental.check(rbEstadoMental4.id)
+            else -> rgEstadoMental.check(-1)
+        }
+        when (classification?.oxigenacao) {
+            1 -> rgOxigenacao.check(rbOxigenacao1.id)
+            2 -> rgOxigenacao.check(rbOxigenacao2.id)
+            3 -> rgOxigenacao.check(rbOxigenacao3.id)
+            4 -> rgOxigenacao.check(rbOxigenacao4.id)
+            else -> rgOxigenacao.check(-1)
+        }
+        when (classification?.sinaisVitais) {
+            1 -> rgSinaisVitais.check(rbSinaisVitais1.id)
+            2 -> rgSinaisVitais.check(rbSinaisVitais2.id)
+            3 -> rgSinaisVitais.check(rbSinaisVitais3.id)
+            4 -> rgSinaisVitais.check(rbSinaisVitais4.id)
+            else -> rgSinaisVitais.check(-1)
+        }
+        when (classification?.mobilidade) {
+            1 -> rgMobilidade.check(rbMobilidade1.id)
+            2 -> rgMobilidade.check(rbMobilidade2.id)
+            3 -> rgMobilidade.check(rbMobilidade3.id)
+            4 -> rgMobilidade.check(rbMobilidade4.id)
+            else -> rgMobilidade.check(-1)
+        }
+        when (classification?.deambulacao) {
+            1 -> rgDeambulacao.check(rbDeambulacao1.id)
+            2 -> rgDeambulacao.check(rbDeambulacao2.id)
+            3 -> rgDeambulacao.check(rbDeambulacao3.id)
+            4 -> rgDeambulacao.check(rbDeambulacao4.id)
+            else -> rgDeambulacao.check(-1)
+        }
+        when (classification?.alimentacao) {
+            1 -> rgAlimentacao.check(rbAlimentacao1.id)
+            2 -> rgAlimentacao.check(rbAlimentacao2.id)
+            3 -> rgAlimentacao.check(rbAlimentacao3.id)
+            4 -> rgAlimentacao.check(rbAlimentacao4.id)
+            else -> rgAlimentacao.check(-1)
+        }
+        when (classification?.cuidadoCorporal) {
+            1 -> rgCuidadoCorporal.check(rbCuidadoCorporal1.id)
+            2 -> rgCuidadoCorporal.check(rbCuidadoCorporal2.id)
+            3 -> rgCuidadoCorporal.check(rbCuidadoCorporal3.id)
+            4 -> rgCuidadoCorporal.check(rbCuidadoCorporal4.id)
+            else -> rgCuidadoCorporal.check(-1)
+        }
+        when (classification?.eliminacao) {
+            1 -> rgEliminacao.check(rbEliminacao1.id)
+            2 -> rgEliminacao.check(rbEliminacao2.id)
+            3 -> rgEliminacao.check(rbEliminacao3.id)
+            4 -> rgEliminacao.check(rbEliminacao4.id)
+            else -> rgEliminacao.check(-1)
+        }
+        when (classification?.terapeutica) {
+            1 -> rgTerapeutica.check(rbTerapeutica1.id)
+            2 -> rgTerapeutica.check(rbTerapeutica2.id)
+            3 -> rgTerapeutica.check(rbTerapeutica3.id)
+            4 -> rgTerapeutica.check(rbTerapeutica4.id)
+            else -> rgTerapeutica.check(-1)
+        }
+        when (classification?.integridade) {
+            1 -> rgIntegridade.check(rbIntegridade1.id)
+            2 -> rgIntegridade.check(rbIntegridade2.id)
+            3 -> rgIntegridade.check(rbIntegridade3.id)
+            4 -> rgIntegridade.check(rbIntegridade4.id)
+            else -> rgIntegridade.check(-1)
+        }
+        when (classification?.curativo) {
+            1 -> rgCurativo.check(rbCurativo1.id)
+            2 -> rgCurativo.check(rbCurativo2.id)
+            3 -> rgCurativo.check(rbCurativo3.id)
+            4 -> rgCurativo.check(rbCurativo4.id)
+            else -> rgCurativo.check(-1)
+        }
+        when (classification?.tempoCurativo) {
+            1 -> rgTempoCurativo.check(rbTempoCurativo1.id)
+            2 -> rgTempoCurativo.check(rbTempoCurativo2.id)
+            3 -> rgTempoCurativo.check(rbTempoCurativo3.id)
+            4 -> rgTempoCurativo.check(rbTempoCurativo4.id)
+            else -> rgTempoCurativo.check(-1)
+        }
+        when (classification?.nutricao) {
+            1 -> rgNutricao.check(rbNutricao1.id)
+            2 -> rgNutricao.check(rbNutricao2.id)
+            3 -> rgNutricao.check(rbNutricao3.id)
+            4 -> rgNutricao.check(rbNutricao4.id)
+            else -> rgNutricao.check(-1)
+        }
+        when (classification?.umidade) {
+            1 -> rgUmidade.check(rbUmidade1.id)
+            2 -> rgUmidade.check(rbUmidade2.id)
+            3 -> rgUmidade.check(rbUmidade3.id)
+            4 -> rgUmidade.check(rbUmidade4.id)
+            else -> rgUmidade.check(-1)
+        }
     }
 
     override fun onDestroy() {

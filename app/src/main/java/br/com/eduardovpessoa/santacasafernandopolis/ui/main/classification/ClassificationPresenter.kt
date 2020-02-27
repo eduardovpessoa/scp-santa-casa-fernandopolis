@@ -20,9 +20,7 @@ class ClassificationPresenter(var view: ClassificationContract.View?) :
             .whereEqualTo("status", true)
             .get().addOnSuccessListener { it ->
                 it.forEach {
-                    for (i in 1..30) {
-                        classificationList.add(it.toObject(Classification::class.java))
-                    }
+                    classificationList.add(it.toObject(Classification::class.java))
                 }.run {
                     view?.setAdapter(idUnity, idBed, classificationList)
                     view?.dismissMessage()

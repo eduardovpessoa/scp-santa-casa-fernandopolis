@@ -34,8 +34,8 @@ interface NewClassificationContract {
     }
 
     interface Presenter {
-        fun loadClassification(idUnity: String?, idBed: String?, idClassification: String?)
-        fun saveClassification(idUnity: String?, idBed: String?, classification: Classification?)
+        fun loadClassification()
+        fun saveClassification(classification: Classification?)
         fun onDestroy()
     }
 }

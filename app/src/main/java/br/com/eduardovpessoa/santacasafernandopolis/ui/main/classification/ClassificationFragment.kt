@@ -21,6 +21,7 @@ class ClassificationFragment : Fragment(), ClassificationContract.View {
 
     private var presenter: ClassificationContract.Presenter? = null
     private var listener: MainAdapterContract.ClassificationAdapter? = null
+    private var listenerNew: MainAdapterContract.NewClassificationAdapter? = null
     private lateinit var viewClassification: View
     private lateinit var snackbar: Snackbar
 
@@ -36,10 +37,16 @@ class ClassificationFragment : Fragment(), ClassificationContract.View {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if (context is MainAdapterContract.ClassificationAdapter) {
-            listener = context
-        } else {
-            Log.e(ClassificationFragment::class.java.name, "onAttach error!")
+        when (context) {
+            is MainAdapterContract.ClassificationAdapter -> {
+                listener = context
+            }
+            is MainAdapterContract.NewClassificationAdapter -> {
+                listenerNew = context
+            }
+            else -> {
+                Log.e(ClassificationFragment::class.java.name, "onAttach error!")
+            }
         }
     }
 
@@ -66,6 +73,12 @@ class ClassificationFragment : Fragment(), ClassificationContract.View {
             arguments?.getString("idUnity"),
             arguments?.getString("idBed")
         )
+        btnNewClassification.setOnClickListener {
+            listenerNew?.onClickNewClassification(
+                arguments?.getString("idUnity"),
+                arguments?.getString("idBed")
+            )
+        }
     }
 
     override fun setAdapter(
@@ -112,4 +125,5 @@ class ClassificationFragment : Fragment(), ClassificationContract.View {
         presenter = null
         super.onDestroy()
     }
+
 }

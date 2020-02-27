@@ -4,19 +4,23 @@ import android.util.Log
 import br.com.eduardovpessoa.santacasafernandopolis.data.model.Classification
 import com.google.firebase.firestore.FirebaseFirestore
 
-class NewClassificationPresenter(var view: NewClassificationContract.View?, var idUnity: String?) :
+class NewClassificationPresenter(
+    var view: NewClassificationContract.View?,
+    var idUnity: String?,
+    var idBed: String?,
+    var idClassification: String?
+) :
     NewClassificationContract.Presenter {
 
     private val db = FirebaseFirestore.getInstance()
 
     init {
+        if (!idClassification.isNullOrEmpty())
+            loadClassification()
         view?.initViews()
-            .run {
-                if (!idUnity.isNullOrEmpty()) loadClassification(idUnity)
-            }
     }
 
-    override fun loadClassification(idUnity: String?, idBed: String?, idClassification: String?) {
+    override fun loadClassification() {
         view?.showMessage("Carregando Classificação...", true)
         db.collection("unity")
             .document(idUnity.toString())
@@ -37,10 +41,7 @@ class NewClassificationPresenter(var view: NewClassificationContract.View?, var 
             }
     }
 
-
     override fun saveClassification(
-        idUnity: String?,
-        idBed: String?,
         classification: Classification?
     ) {
         view?.showMessage("Salvando Classificação...", true)
@@ -49,14 +50,14 @@ class NewClassificationPresenter(var view: NewClassificationContract.View?, var 
             .collection("bed")
             .document(idBed.toString())
             .collection("classification")
-            .document(db.collection("classification").document().id)
-            .set(classification)
+            .document()
+            .set(classification as Classification)
             .addOnCompleteListener {
                 view?.showMessage("Cadastrado com sucesso!", false)
             }.addOnFailureListener { exception ->
                 Log.e(NewClassificationPresenter::class.java.name, exception.message!!)
                 view?.showMessage(
-                    "Falha ao salvar a classificação! Detalhes: ${exception.message}",
+                    "Falha ao salvar a Classificação! Detalhes: ${exception.message}",
                     false
                 )
             }
