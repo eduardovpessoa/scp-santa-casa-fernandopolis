@@ -3,5 +3,7 @@ Esse aplicativo é um sistema de classificação de pacientes p/ gerenciamento d
 
 Esse aplicativo foi desenvolvido filantropicamente por Eduardo Viana Pessoa e idealizado por Marcus Monezi, com base em seu trabalho de conclusão do mestrado.
 
+#### Link Play Store:
 
-<img src="https://i.imgur.com/Esqsic0.png" width="420"> <img src="https://i.imgur.com/jpObo3G.png" width="420"> <img src="https://i.imgur.com/G9ELKTG.png" width="420"> <img src="https://i.imgur.com/u7nSfZE.png" width="420"> <img src="https://i.imgur.com/2xJ40Fj.png" width="420"> <img src="https://i.imgur.com/fq52fq2.png" width="420"> <img src="https://i.imgur.com/IKKQ9TA.png" width="420"> <img src="https://i.imgur.com/2xkjNEF.png" width="420">
+
+<br/><img src="https://i.imgur.com/Esqsic0.png" width="420"> <img src="https://i.imgur.com/jpObo3G.png" width="420"> <img src="https://i.imgur.com/G9ELKTG.png" width="420"> <img src="https://i.imgur.com/u7nSfZE.png" width="420"> <img src="https://i.imgur.com/2xJ40Fj.png" width="420"> <img src="https://i.imgur.com/fq52fq2.png" width="420"> <img src="https://i.imgur.com/IKKQ9TA.png" width="420"> <img src="https://i.imgur.com/2xkjNEF.png" width="420">
