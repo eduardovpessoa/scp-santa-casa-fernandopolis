@@ -13,7 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.eduardovpessoa.santacasafernandopolis.R
 import br.com.eduardovpessoa.santacasafernandopolis.data.model.Classification
 import br.com.eduardovpessoa.santacasafernandopolis.data.util.EmptyAdapter
+import br.com.eduardovpessoa.santacasafernandopolis.ui.main.MainActivity
 import br.com.eduardovpessoa.santacasafernandopolis.ui.main.MainAdapterContract
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_classification.*
 
@@ -21,16 +23,23 @@ class ClassificationFragment : Fragment(), ClassificationContract.View {
 
     private var presenter: ClassificationContract.Presenter? = null
     private var listener: MainAdapterContract.ClassificationAdapter? = null
-    private var listenerNew: MainAdapterContract.NewClassificationAdapter? = null
+    private var listenerNewClass: MainAdapterContract.NewClassificationAdapter? = null
     private lateinit var viewClassification: View
     private lateinit var snackbar: Snackbar
 
     companion object {
         @JvmStatic
-        fun newInstance(idUnity: String?, idBed: String?) = ClassificationFragment().apply {
+        fun newInstance(
+            idUnity: String?,
+            idBed: String?,
+            nameBed: String?,
+            listenerNewClassification: MainAdapterContract.NewClassificationAdapter?
+        ) = ClassificationFragment().apply {
             arguments = Bundle().apply {
                 putString("idUnity", idUnity)
                 putString("idBed", idBed)
+                putString("nameBed", nameBed)
+                listenerNewClass = listenerNewClassification
             }
         }
     }
@@ -40,9 +49,6 @@ class ClassificationFragment : Fragment(), ClassificationContract.View {
         when (context) {
             is MainAdapterContract.ClassificationAdapter -> {
                 listener = context
-            }
-            is MainAdapterContract.NewClassificationAdapter -> {
-                listenerNew = context
             }
             else -> {
                 Log.e(ClassificationFragment::class.java.name, "onAttach error!")
@@ -59,6 +65,8 @@ class ClassificationFragment : Fragment(), ClassificationContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity).supportActionBar?.title =
+            "SCP - ${arguments?.getString("nameBed")}"
         recyclerClassification.adapter = EmptyAdapter()
         viewClassification = view
         presenter = ClassificationPresenter(this)
@@ -74,7 +82,7 @@ class ClassificationFragment : Fragment(), ClassificationContract.View {
             arguments?.getString("idBed")
         )
         btnNewClassification.setOnClickListener {
-            listenerNew?.onClickNewClassification(
+            listenerNewClass?.onClickNewClassification(
                 arguments?.getString("idUnity"),
                 arguments?.getString("idBed")
             )
@@ -104,9 +112,21 @@ class ClassificationFragment : Fragment(), ClassificationContract.View {
                         dateClassification
                     )
                 }
+
+                override fun onLongClickClassification(
+                    idUnity: String?,
+                    idBed: String?,
+                    idClassification: String?
+                ) {
+                    presenter?.removeClassification(idUnity, idBed, idClassification)
+                }
             })
-        adapter.notifyDataSetChanged()
         recyclerClassification.adapter = adapter
+        notifyAdapterChanged()
+    }
+
+    override fun notifyAdapterChanged() {
+        recyclerClassification.adapter?.notifyDataSetChanged()
     }
 
     override fun showMessage(msg: String, infinite: Boolean) {
@@ -119,6 +139,15 @@ class ClassificationFragment : Fragment(), ClassificationContract.View {
     }
 
     override fun dismissMessage() = snackbar.dismiss()
+
+    override fun enableBtnNewClassification(show: Boolean) {
+        when {
+            show -> btnNewClassification.visibility =
+                FloatingActionButton.VISIBLE
+            else -> btnNewClassification.visibility =
+                FloatingActionButton.INVISIBLE
+        }
+    }
 
     override fun onDestroy() {
         presenter?.onDestroy()

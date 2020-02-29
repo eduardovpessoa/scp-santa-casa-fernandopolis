@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var presenter: MainContract.Presenter? = null
     private lateinit var fragment: Fragment
     private var doubleBackToExitPressedOnce: Boolean = false
+    private var newClassificationLstener: MainAdapterContract.NewClassificationAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -107,12 +108,16 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 replaceFragment(fragment)
             }
             R.id.nav_classification -> {
-                title = "SCP - Unidades"
+                title = "SCP - Selecione a Unidade"
                 fragment = UnityFragment()
                 replaceFragment(fragment)
             }
             R.id.nav_info -> {
-                Toast.makeText(this, "Créditos...", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "Créditos...\nDev: Eduardo Viana Pessoa\nIdealização: Marcus Monezi",
+                    Toast.LENGTH_LONG
+                ).show()
             }
             R.id.nav_exit -> {
                 presenter?.logout()
@@ -138,9 +143,20 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onDestroy()
     }
 
+    override fun onClickUnity(idUnity: String?, nameUnity: String?) {
+        replaceFragment(BedFragment.newInstance(idUnity, nameUnity))
+    }
+
     override fun onClickBed(idUnity: String?, idBed: String?, nameBed: String?) {
-        title = "SCP - Histórico $nameBed"
-        replaceFragment(ClassificationFragment.newInstance(idUnity, idBed))
+        newClassificationLstener = this
+        replaceFragment(
+            ClassificationFragment.newInstance(
+                idUnity,
+                idBed,
+                nameBed,
+                newClassificationLstener
+            )
+        )
     }
 
     override fun onClickClassification(
@@ -149,10 +165,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         idClassification: String?,
         dateClassification: Long?
     ) {
-        /*val sdf: String = SimpleDateFormat(
-            "dd/MM/yyyy",
-            Locale("pt", "BR")
-        ).format(dateClassification?.let { Date(it).toString() })*/
         replaceFragment(
             NewClassificationFragment.newInstance(
                 idUnity,
@@ -162,13 +174,14 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
     }
 
-    override fun onClickUnity(idUnity: String?, nameUnity: String?) {
-        title = "SCP - $nameUnity"
-        replaceFragment(BedFragment.newInstance(idUnity, nameUnity))
+    override fun onLongClickClassification(
+        idUnity: String?,
+        idBed: String?,
+        idClassification: String?
+    ) {
     }
 
     override fun onClickNewClassification(idUnity: String?, idBed: String?) {
-        title = "SCP - Nova Classificação"
         replaceFragment(
             NewClassificationFragment.newInstance(
                 idUnity,
@@ -177,4 +190,5 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             )
         )
     }
+
 }

@@ -25,6 +25,7 @@
         android:layout_marginBottom="16dp"
         android:elevation="8dp"
         android:src="@drawable/ic_add_white_24dp"
+        android:visibility="invisible"
         app:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

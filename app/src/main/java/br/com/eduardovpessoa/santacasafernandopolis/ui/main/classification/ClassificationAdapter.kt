@@ -1,5 +1,6 @@
 package br.com.eduardovpessoa.santacasafernandopolis.ui.main.classification
 
+import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -56,6 +57,25 @@ class ClassificationAdapter(
                     classification?.id,
                     classification?.registered?.time
                 )
+            }
+            itemView.setOnLongClickListener {
+                val dialogBuilder = AlertDialog.Builder(itemView.context)
+
+                dialogBuilder.setMessage("Deseja remover a classificação?")
+                    .setCancelable(false)
+                    .setPositiveButton("Sim!") { _, _ ->
+                        classificationListener?.onLongClickClassification(
+                            idUnity,
+                            idBed,
+                            classification?.id
+                        )
+                    }
+                    .setNegativeButton("Não") { dialog, _ -> dialog.cancel() }
+
+                val alert = dialogBuilder.create()
+                alert.setTitle("Alerta")
+                alert.show()
+                true
             }
         }
     }

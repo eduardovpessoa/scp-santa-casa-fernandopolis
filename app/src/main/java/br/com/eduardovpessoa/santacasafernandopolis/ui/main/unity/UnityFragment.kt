@@ -62,8 +62,8 @@ class UnityFragment : Fragment(), UnityContract.View {
                     listener?.onClickUnity(idUnity, nameUnity)
                 }
             })
-        adapter.notifyDataSetChanged()
         recyclerUnity.adapter = adapter
+        adapter.notifyDataSetChanged()
     }
 
     override fun showMessage(msg: String, infinite: Boolean) {

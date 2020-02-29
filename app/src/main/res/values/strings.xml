@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sistema de Classificação de Pacientes</string>
+    <string name="app_name">SCP</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Santa Casa de Fernandópolis</string>
@@ -15,6 +15,42 @@
 
     <string name="main_title">SCP - Início</string>
     <string name="options">Opções</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="cs_logotipo_sta_casa">Logotipo da Santa Casa de Misericórdia de Fernandópolis</string>
+    <string name="cd_cuidados_intensivos">Indicador de Cuidados Intensivos</string>
+    <string name="cd_cuidados_si">Indicador de Cuidados Semi-Intensivos</string>
+    <string name="cd_alta_dep">Indicador Alta Dependência</string>
+    <string name="cd_cuidados_intermediarios">Indicador de Cuidados Intermediários</string>
+    <string name="cd_cuidados_minimos">Indicador Cuidados Mínimos</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="login">Login</string>
+    <string name="classifica_o_fugulin">Classificação Fugulin</string>
+    <string name="estado_mental">Estado Mental</string>
+    <string name="_4">4</string>
+    <string name="_3">3</string>
+    <string name="_2">2</string>
+    <string name="_1">1</string>
+    <string name="sinais_vitais">Sinais Vitais</string>
+    <string name="mobilidade">Mobilidade</string>
+    <string name="deambula_o">Deambulação</string>
+    <string name="alimenta_o">Alimentação</string>
+    <string name="cuidado_corporal">Cuidado Corporal</string>
+    <string name="elimina_o">Eliminação</string>
+    <string name="terap_utica">Terapêutica</string>
+    <string name="integr_cut_neo_mucosa_compr_tecidual">Integr. cutâneo-mucosa / compr. tecidual</string>
+    <string name="curativo">Curativo</string>
+    <string name="tempo_utilizado_na_realiza_o_dos_curativos">Tempo utilizado na realização dos curativos</string>
+    <string name="classifica_o_braden">Classificação Braden</string>
+    <string name="umidade">Umidade</string>
+    <string name="total_de_pontos">Total de Pontos</string>
+    <string name="fugulin">Fugulin:</string>
+    <string name="intensivo_34">Intensivo (+34)</string>
+    <string name="semi_intensivo_29_34">Semi–intensivo (29 – 34)</string>
+    <string name="alta_depend_ncia_23_28">Alta Dependência (23 – 28)</string>
+    <string name="intermedi_rio_18_22">Intermediário (18 – 22)</string>
+    <string name="m_nimo_12_17">Mínimo (12 – 17)</string>
+    <string name="salvar">Salvar</string>
+    <string name="oxigena_o">Oxigenação</string>
+    <string name="nutri_o">Nutrição</string>
+    <string name="braden">Braden:</string>
 </resources>

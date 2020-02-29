@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import br.com.eduardovpessoa.santacasafernandopolis.R
 import br.com.eduardovpessoa.santacasafernandopolis.data.model.Classification
+import br.com.eduardovpessoa.santacasafernandopolis.ui.main.MainActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_new_classification.*
 
@@ -39,6 +40,8 @@ class NewClassificationFragment : Fragment(), NewClassificationContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity).supportActionBar?.title =
+            "SCP - Nova Classificação"
         viewNewClassification = view
         presenter = NewClassificationPresenter(
             this,
@@ -75,7 +78,11 @@ class NewClassificationFragment : Fragment(), NewClassificationContract.View {
         rgUmidade.setOnCheckedChangeListener { _, _ -> calcBraden() }
         rgEliminacao.setOnCheckedChangeListener { _, _ -> calcFugulin() }
         rgTerapeutica.setOnCheckedChangeListener { _, _ -> calcFugulin() }
-        //btnSave.setOnClickListener { if (validadeClassification()) pushClassification() }
+        btnSave.setOnClickListener { if (validadeClassification()) pushClassification() }
+    }
+
+    override fun changeTitle(title: String?) {
+        (activity as MainActivity).supportActionBar?.title = title.toString()
     }
 
     override fun validadeClassification(): Boolean {
@@ -145,27 +152,33 @@ class NewClassificationFragment : Fragment(), NewClassificationContract.View {
     }
 
     override fun pushClassification() {
-        presenter?.saveClassification(
-            Classification(
-                id = arguments?.getString("idUnity") ?: "",
-                alimentacao = sumAlimentacao(),
-                cuidadoCorporal = sumCuidadoCorporal(),
-                curativo = sumCurativo(),
-                deambulacao = sumDeambulacao(),
-                eliminacao = sumEliminacao(),
-                estadoMental = sumEstadoMental(),
-                integridade = sumIntegridade(),
-                mobilidade = sumMobilidade(),
-                oxigenacao = sumOxigenacao(),
-                sinaisVitais = sumSinaisVitais(),
-                tempoCurativo = sumTempoCurativo(),
-                terapeutica = sumTerapeutica(),
-                nutricao = sumNutricao(),
-                umidade = sumUmidade(),
-                totalBraden = calcBraden(),
-                totalFugulin = calcFugulin()
-            )
+        val myClassification = Classification(
+            id = arguments?.getString("idClassification") ?: "",
+            alimentacao = sumAlimentacao(),
+            cuidadoCorporal = sumCuidadoCorporal(),
+            curativo = sumCurativo(),
+            deambulacao = sumDeambulacao(),
+            eliminacao = sumEliminacao(),
+            estadoMental = sumEstadoMental(),
+            integridade = sumIntegridade(),
+            mobilidade = sumMobilidade(),
+            oxigenacao = sumOxigenacao(),
+            sinaisVitais = sumSinaisVitais(),
+            tempoCurativo = sumTempoCurativo(),
+            terapeutica = sumTerapeutica(),
+            nutricao = sumNutricao(),
+            umidade = sumUmidade(),
+            totalBraden = calcBraden(),
+            totalFugulin = calcFugulin()
         )
+        when {
+            myClassification.id.isEmpty() -> {
+                presenter?.saveClassification(myClassification)
+            }
+            else -> {
+                presenter?.updateClassification(myClassification)
+            }
+        }
     }
 
     override fun calcBraden(): Int {
@@ -380,7 +393,7 @@ class NewClassificationFragment : Fragment(), NewClassificationContract.View {
 
     override fun showMessage(msg: String, infinite: Boolean) {
         snackbar = Snackbar.make(
-            viewNewClassification.findViewById(R.id.scrollNewClassfication),
+            viewNewClassification.findViewById(R.id.scrollNewClassification),
             msg,
             if (infinite) Snackbar.LENGTH_INDEFINITE else Snackbar.LENGTH_LONG
         )
@@ -488,6 +501,10 @@ class NewClassificationFragment : Fragment(), NewClassificationContract.View {
             4 -> rgUmidade.check(rbUmidade4.id)
             else -> rgUmidade.check(-1)
         }
+    }
+
+    override fun goBack() {
+        activity?.onBackPressed()
     }
 
     override fun onDestroy() {

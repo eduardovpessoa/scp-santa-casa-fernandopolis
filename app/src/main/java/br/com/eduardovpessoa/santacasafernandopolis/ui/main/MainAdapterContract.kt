@@ -12,6 +12,12 @@ interface MainAdapterContract {
             idClassification: String?,
             dateClassification: Long?
         )
+
+        fun onLongClickClassification(
+            idUnity: String?,
+            idBed: String?,
+            idClassification: String?
+        )
     }
 
     interface NewClassificationAdapter {

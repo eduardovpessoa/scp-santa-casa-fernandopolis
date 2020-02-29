@@ -5,6 +5,7 @@ import br.com.eduardovpessoa.santacasafernandopolis.data.model.Classification
 interface NewClassificationContract {
     interface View {
         fun initViews()
+        fun changeTitle(title : String?)
         fun validadeClassification(): Boolean
         fun pushClassification()
         fun calcBraden(): Int
@@ -30,12 +31,14 @@ interface NewClassificationContract {
         fun showMessage(msg: String, infinite: Boolean)
         fun dismissMessage()
         fun setClassification(classification: Classification?)
+        fun goBack()
         fun onDestroy()
     }
 
     interface Presenter {
         fun loadClassification()
         fun saveClassification(classification: Classification?)
+        fun updateClassification(classification: Classification?)
         fun onDestroy()
     }
 }

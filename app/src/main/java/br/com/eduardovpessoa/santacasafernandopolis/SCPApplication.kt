@@ -1,12 +1,12 @@
 package br.com.eduardovpessoa.santacasafernandopolis
 
+import android.app.Application
 import android.content.Context
-import androidx.multidex.MultiDexApplication
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.FirebaseFirestoreSettings
 
-class SCPApplication : MultiDexApplication() {
+class SCPApplication : Application() {
 
     init {
         instance = this

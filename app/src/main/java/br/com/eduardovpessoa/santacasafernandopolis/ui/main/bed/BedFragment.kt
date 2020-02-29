@@ -4,16 +4,16 @@ package br.com.eduardovpessoa.santacasafernandopolis.ui.main.bed
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import br.com.eduardovpessoa.santacasafernandopolis.R
 import br.com.eduardovpessoa.santacasafernandopolis.data.model.Bed
 import br.com.eduardovpessoa.santacasafernandopolis.data.util.EmptyAdapter
+import br.com.eduardovpessoa.santacasafernandopolis.ui.main.MainActivity
 import br.com.eduardovpessoa.santacasafernandopolis.ui.main.MainAdapterContract
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_bed.*
@@ -53,6 +53,8 @@ class BedFragment : Fragment(), BedContract.View {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as MainActivity).supportActionBar?.title =
+            "SCP - ${arguments?.getString("nameUnity")}"
         recyclerBed.adapter = EmptyAdapter()
         viewBed = view
         presenter = BedPresenter(this)
@@ -75,8 +77,8 @@ class BedFragment : Fragment(), BedContract.View {
                     listener?.onClickBed(idUnity, idBed, nameBed)
                 }
             })
-        adapter.notifyDataSetChanged()
         recyclerBed.adapter = adapter
+        adapter.notifyDataSetChanged()
     }
 
     override fun showMessage(msg: String, infinite: Boolean) {
