@@ -1,4 +1,7 @@
 # SCP - Santa Casa de Misericórdia de Fernandópolis
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/3688a489ad1243ccb3674ac094910492)](https://app.codacy.com/manual/duduvp/scp-santa-casa-fernandopolis?utm_source=github.com&utm_medium=referral&utm_content=eduardovpessoa/scp-santa-casa-fernandopolis&utm_campaign=Badge_Grade_Settings)
+
 Esse aplicativo é um sistema de classificação de pacientes p/ gerenciamento das unidades hospitalares, leitos e também avaliação do grau de risco dos pacientes da Santa Casa de Misericórdia de Fernandópolis, com base nas escalas de Fugulin e Braden.
 
 Esse aplicativo foi desenvolvido filantropicamente por Eduardo Viana Pessoa e idealizado por Marcus Monezi, com base em seu trabalho de conclusão do mestrado.
