@@ -21,6 +21,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View {
     }
 
     override fun initViews() {
+        setTitle(R.string.nav_header_subtitle_drawer)
         setContentView(R.layout.activity_login)
         btnLogin.setOnClickListener { onLoginButtonClicked() }
         Log.i(LoginActivity::class.java.name, appContext.toString())

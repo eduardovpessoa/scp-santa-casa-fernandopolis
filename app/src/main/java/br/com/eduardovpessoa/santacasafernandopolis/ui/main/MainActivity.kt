@@ -94,8 +94,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+            R.id.action_settings -> {
+                Toast.makeText(
+                    this,
+                    "Créditos:\nDev: Eduardo Viana Pessoa\nIdealização: Marcus Monezi",
+                    Toast.LENGTH_LONG
+                ).show()
+                true
+            }
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
         }
     }
 
@@ -115,7 +124,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.nav_info -> {
                 Toast.makeText(
                     this,
-                    "Créditos...\nDev: Eduardo Viana Pessoa\nIdealização: Marcus Monezi",
+                    "Créditos:\nDev: Eduardo Viana Pessoa\nIdealização: Marcus Monezi",
                     Toast.LENGTH_LONG
                 ).show()
             }

@@ -3,9 +3,10 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Santa Casa de Fernandópolis</string>
-    <string name="nav_header_subtitle">Sistema de Classificação de Pacientes</string>
+    <string name="nav_header_subtitle">SCP</string>
+    <string name="nav_header_subtitle_drawer">Sistema de Classificação de Pacientes</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Configurações</string>
+    <string name="action_settings">Sobre</string>
 
     <string name="menu_home">Início</string>
     <string name="menu_classification">Classificação</string>
